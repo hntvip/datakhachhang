@@ -5,7 +5,7 @@ exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 // controllers/products.js
-exports.khachhang_create = function (req, res) {
+exports.khachhang_create = function (req, res, next) {
     let body = req.body || {
         name: '',
         address: '',
@@ -22,11 +22,13 @@ exports.khachhang_create = function (req, res) {
         placeOrder: body.placeOrder
     });
     
-    khachhang.save(function (err) {
+    khachhang.save(function (err, user) {
         if (err) {
+            res.send(err);
             return next(err);
         }
-        res.send('khachhang created successfully')
+        res.send({data:user});
+        // res.send('khachhang created successfully')
     })
 };
 
