@@ -35,6 +35,9 @@ exports.khachhang_create = function (req, res, next) {
 exports.getAll = function (req, res) {
     
     Customer.find({}, function(err, users) {
+        if(err){
+            res.status(404).send("error from server");
+        }
         res.send(users)
         res.status(200);
     });
