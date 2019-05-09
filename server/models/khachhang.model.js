@@ -6,7 +6,8 @@ let Customer = new Schema({
     address: {type: String},
     phoneNumber: {type: Number, required: true},
     orderNumber: {type: Number},
-    shopID: {type: String}
+    shopID: {type: String},
+    created: {type: Date, default: new Date()}
 });
 
 // Export the model

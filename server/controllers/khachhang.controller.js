@@ -19,7 +19,7 @@ exports.khachhang_create = function (req, res, next) {
         address: body.address,
         phoneNumber: body.phoneNumber,
         orderNumber: body.orderNumber,
-        placeOrder: body.placeOrder
+        shopID: body.shopID
     });
     
     khachhang.save(function (err, user) {
