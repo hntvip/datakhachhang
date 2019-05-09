@@ -46,7 +46,21 @@ exports.getAll = function (req, res) {
 exports.findByName = function (req, res) {
     let queryName = req.params.name;
     Customer.find({ name: queryName }, function(err, customer){
-        res.send(customer);
         res.status(200);
     })
 };
+
+function renameFieldOfKhachHang(req, res) {
+    Customer.updateMany({}, { $rename: { "placeOrder" : "shopID" } }, { multi: true }, function(err, data) {
+        if (!err) { 
+            //success 
+            console.log('Changed ok')
+        }
+    })
+}
+
+exports.renameFieldOfKhachHang = function (req, res) {
+    renameFieldOfKhachHang();
+};
+
+

@@ -6,7 +6,7 @@ let Customer = new Schema({
     address: {type: String},
     phoneNumber: {type: Number, required: true},
     orderNumber: {type: Number},
-    placeOrder: {type: String}
+    shopID: {type: String}
 });
 
 // Export the model
