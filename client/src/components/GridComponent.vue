@@ -21,14 +21,18 @@
             <th>
                 TG Dat Hang
             </th>
+            <th>
+                Xóa
+            </th>
         </tr>
-        <tr v-for="hero in heros">
-          <td @click="getName"> {{hero.name}} </td>
-          <td> {{hero.address}} </td>
-          <td> {{hero.phoneNumber}} </td>
-          <td> {{hero.orderNumber}} </td>
-          <td> {{hero.shopID}} </td>
-          <td> {{hero.created}} </td>
+        <tr v-for="(hero, index) in heros" :key="hero.id">
+          <td><a href="#" @click.prevent="getInfo(index)">{{ hero.name }} </a></td>
+          <td> {{ hero.address }} </td>
+          <td> {{ hero.phoneNumber }} </td>
+          <td> {{ hero.orderNumber }} </td>
+          <td> {{ hero.shopID }} </td>
+          <td> {{ hero.created }} </td>
+          <td> <a href="#" @click.prevent="deleteHero(index)">Xóa</a></td>
         </tr>
     </table>
   </div>
@@ -44,11 +48,15 @@ export default {
     return {
       mgs: 'Hi Grid component'
     }
-    
   },
-  method:{
-    getName(){
-      this.$emit('get-name', name)
+  methods:{
+    deleteHero(index) {
+      this.heros.splice(index, 1);
+    },
+    getInfo(index) {
+      console.log(index)
+      var hero = this.heros[index];
+      this.$emit('event-get-info', hero);
     }
   }
 }

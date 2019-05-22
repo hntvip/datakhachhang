@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import DanhSachDonHang from './views/DanhSachDonHang.vue'
+import DonHang from './views/DonHang.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -17,12 +18,14 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/list-don-hang',
-      name: 'khachhang',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      path: '/don-hang',
+      name: 'don-hang',
       component: DanhSachDonHang
+    },
+    {
+      path: '/don-hang/:id',
+      name: 'don-hang',
+      component: DonHang
     }
   ]
 })

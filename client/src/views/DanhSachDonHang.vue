@@ -1,7 +1,7 @@
 <template>
   <div class="danh-sach-don-hang">
-    <GridComponent v-on:get-id-event="getId" :heros="list"/>
-    <HelloWorld msg="hehe"/>
+    <GridComponent @event-get-info="getInfoKhachHang" :heros="list"/>
+    <HelloWorld msg="hehe" />
   </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
     return {
       list: [
         {
+          id: 1,
           name: 'Tu',
           address: 'Nga Bay',
           phoneNumber: '0888109595',
@@ -26,6 +27,7 @@ export default {
           created: new Date()
         },
         {
+          id: 2,
           name: 'Tai',
           address: 'HCM',
           phoneNumber: '0888209595',
@@ -44,7 +46,7 @@ export default {
     }
   },
   methods: {
-    getId (){
+    getInfoKhachHang(hero) {
       
     }
   }
