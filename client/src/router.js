@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import DanhSachDonHang from './views/DanhSachDonHang.vue'
 import DonHang from './views/DonHang.vue'
+import UpdateDonHang from './views/UpdateDonHang.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -23,9 +24,9 @@ export default new Router({
       component: DanhSachDonHang
     },
     {
-      path: '/don-hang/:id',
-      name: 'don-hang',
-      component: DonHang
+      path: '/update-don-hang',
+      name: 'update-don-hang',
+      component: UpdateDonHang
     }
   ]
 })

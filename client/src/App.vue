@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <el-container style="border: 2px solid red">
+    <el-container>
       <!-- header -->
-      <el-header style="height:120px; border:2px solid blue">
+      <el-header style="height:120px;">
         <img class="logo-vue" alt="Vue logo" width="50px" height="50px" src="./assets/logo.png">
         <div id="nav">
           <router-link to="/">Home</router-link> | 
@@ -33,7 +33,7 @@
                 <span slot="title">Đơn hàng</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="/don-hang/create">Tạo đơn hàng</el-menu-item>
+                <el-menu-item index="/update-don-hang">Tạo đơn hàng</el-menu-item>
                 <el-menu-item index="/don-hang">Danh sách đơn hang</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
@@ -53,11 +53,11 @@
             </el-menu-item>
           </el-menu>
         </el-aside>
-        <el-main style="height:700px; border: 2px solid green">
+        <el-main style="height:700px">
           <router-view/>
         </el-main>
       </el-container>
-      <el-footer style="border: 2px solid green">
+      <el-footer>
         <p>Copyright by Tu</p>
       </el-footer>
     </el-container>
@@ -101,7 +101,7 @@ export default {
       if (this.isCollapse) {
         return 65;
       } else {
-        return 300;
+        return 200;
       }
     },
     setIconCollapseMenu() {
