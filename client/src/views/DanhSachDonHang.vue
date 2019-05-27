@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     getInfoKhachHang(hero) {
-      
+      this.$router.push({name:'edit-don-hang', params: {id: hero.id}})
     }
   }
 }
