@@ -25,8 +25,15 @@ export default new Router({
     },
     {
       path: '/update-don-hang',
-      name: 'update-don-hang',
-      component: UpdateDonHang
+      name: 'create-don-hang',
+      component: UpdateDonHang,
+      props: { editMode: false }
+    },
+    {
+      path: '/update-don-hang/:id',
+      name: 'edit-don-hang',
+      component: UpdateDonHang,
+      props: { editMode: true }
     }
   ]
 })

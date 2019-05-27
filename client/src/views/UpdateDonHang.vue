@@ -49,10 +49,9 @@
 
 <script>
 // @ is an alias to /src
-
 export default {
   name: "UpdateDonHang",
-  components: {},
+  props: ['editMode'],  
   data() {
     return {
       shopList: [],
@@ -61,6 +60,7 @@ export default {
         shopID: '',
         phoneNumber:''
       },
+      hero:{},
       rules:{
         name:[
           { required: true, message: 'Bạn nhập thiếu tên', trigger: 'blur' },
@@ -77,7 +77,7 @@ export default {
         ],
         shopID:[
           { required: true, message: 'Bạn nhập thiếu sdt', trigger: 'blur' }
-        ],
+        ]
       }
     };
   },
@@ -88,13 +88,35 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+            let obj = this.form;
+            this.hero = {
+                name: obj.name,
+                address: obj.address,
+                orderNumber: obj.orderNumber,
+                shopID: obj.shopID,
+                id: 1
+            };
+            this.$router.push({name: 'edit-don-hang',params:{id:1}});
+            alert("sumit")
         } else {
           console.log("error submit!!");
           return false;
         }
       });
     }
+  },
+  mounted() {
+      if(this.$route.params.id){
+        console.log("have id" +this.$route.params.id)
+        this.form = {
+          orderNumber : '1',
+          shopID:'11',
+          phoneNumber:'1111'
+        };
+      }
+  },
+  destroyed() {
+    console.log("destroy")
   },
   created() {
     this.shopList = [
