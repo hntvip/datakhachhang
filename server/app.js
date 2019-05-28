@@ -12,8 +12,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const khachhang = require('./routes/khachhang.route'); // Imports routes for the khachhangs
+const donhang = require('./routes/donhang.route'); // Imports routes for the donhang
 
 app.use('/api/khachhang', khachhang);
+app.use('/api/donhang', donhang);
 
 let port = 1234;
 

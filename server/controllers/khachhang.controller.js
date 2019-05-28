@@ -33,7 +33,6 @@ exports.khachhang_create = function (req, res, next) {
 };
 
 exports.getAll = function (req, res) {
-    
     Customer.find({}, function(err, users) {
         if(err){
             res.status(404).send("error from server");
@@ -46,7 +45,9 @@ exports.getAll = function (req, res) {
 exports.findByName = function (req, res) {
     let queryName = req.params.name;
     Customer.find({ name: queryName }, function(err, customer){
-        res.status(200);
+        res.status(200).send(customer)
+    }, function(){
+        res.status(400)
     })
 };
 
