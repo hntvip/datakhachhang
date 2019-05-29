@@ -49,6 +49,7 @@
 
 <script>
 // @ is an alias to /src
+import RestResource from '../services/RestResource'
 export default {
   name: "UpdateDonHang",
   props: ['editMode'],  
@@ -85,35 +86,37 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+
+    createForm(data) {
+      RestResource.create(data);
+    },
+
+    updateForm(data, _id) {
+      RestResource.update(_id, data);
+    },
+
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
-        if (valid) {
-            let obj = this.form;
-            this.hero = {
-                name: obj.name,
-                address: obj.address,
-                orderNumber: obj.orderNumber,
-                shopID: obj.shopID,
-                id: 1
-            };
-            this.$router.push({name: 'edit-don-hang',params:{id:1}});
-            alert("sumit")
-        } else {
-          console.log("error submit!!");
-          return false;
+        if( !valid ){
+          return;
         }
+
+        let _id = this.$router.params.id, 
+            obj = this.form;
+            
+        _id ? this.updateForm(obj, _id) : this.createForm(obj);
+          
+        this.$router.push({name: 'edit-don-hang',params:{ id : _id }});
       });
     }
   },
+
   mounted() {
-      if(this.$route.params.id){
-        console.log("have id" +this.$route.params.id)
-        this.form = {
-          orderNumber : '1',
-          shopID:'11',
-          phoneNumber:'1111'
-        };
-      }
+    if(this.$route.params.id){
+      RestResource.getById(this.$route.params.id).then((ok) => {
+        this.form = ok.data;
+      })
+    }
   },
   destroyed() {
     console.log("destroy")

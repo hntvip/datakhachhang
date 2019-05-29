@@ -4,7 +4,7 @@ const Order = require('../models/donhang.model');
 exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
-// controllers/products.js
+// controllers/donhang.js
 exports.donhang_create = function (req, res) {
     let body = req.body || {};
     let donhang = new Order( {
@@ -24,10 +24,34 @@ exports.donhang_create = function (req, res) {
     })
 };
 
+exports.donhang_edit = function (req, res) {
+    let body = req.body || {};
+
+    donhang.findByIdAndUpdate(
+        req.params.id, 
+        body, 
+    function (err, data) {
+        if (err) {
+            res.send(err);
+            return next(err);
+        }
+        res.status(200).send("update success!");
+    })
+};
+
 exports.getAll = function (req, res) {
     Order.find({}, function(err, donhang) {
         if(err){
             res.status(404).send("error from server");
+        }
+        res.send(donhang).status(200);
+    });
+};
+
+exports.findById = function (req, res) {
+    Order.findById(req.params.id, function(err, donhang) {
+        if(err){
+            res.status(404).send("Don Hang Not Found");
         }
         res.send(donhang).status(200);
     });

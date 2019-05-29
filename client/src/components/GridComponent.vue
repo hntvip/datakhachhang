@@ -26,7 +26,7 @@
             </th>
         </tr>
         <tr v-for="(hero, index) in heros" :key="hero.id">
-          <td><a href="#" @click.prevent="getInfo(index)">{{ hero.name }} </a></td>
+          <td><a href="#" @click.prevent="getInfo(index)">{{ hero.customerName }} </a></td>
           <td> {{ hero.address }} </td>
           <td> {{ hero.phoneNumber }} </td>
           <td> {{ hero.orderNumber }} </td>
@@ -56,6 +56,7 @@ export default {
     getInfo(index) {
       console.log(index)
       var hero = this.heros[index];
+      console.log(hero)
       this.$emit('event-get-info', hero);
     }
   }

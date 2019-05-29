@@ -8,6 +8,7 @@
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
 import GridComponent from '@/components/GridComponent.vue'
+import RestResource from '../services/RestResource'
 export default {
   name: 'DanhSachDonHang',
   components: {
@@ -16,26 +17,7 @@ export default {
   },
   data () {
     return {
-      list: [
-        {
-          id: 1,
-          name: 'Tu',
-          address: 'Nga Bay',
-          phoneNumber: '0888109595',
-          orderNumber: '11111111',
-          shopID: 'LZD Nga Bay',
-          created: new Date()
-        },
-        {
-          id: 2,
-          name: 'Tai',
-          address: 'HCM',
-          phoneNumber: '0888209595',
-          orderNumber: '2222222',
-          shopID: 'SenDo Hau Giang',
-          created: new Date()
-        }
-      ],
+      list: [],
       userData: {
         name: '',
         address: '',
@@ -45,9 +27,14 @@ export default {
       }
     }
   },
+  created() {
+    RestResource.getAllDonHang().then(ok => {
+      this.list = ok.data;
+    })
+  },
   methods: {
     getInfoKhachHang(hero) {
-      this.$router.push({name:'edit-don-hang', params: {id: hero.id}})
+      this.$router.push({name:'edit-don-hang', params: {id: hero._id}})
     }
   }
 }
