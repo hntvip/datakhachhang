@@ -103,7 +103,7 @@ export default {
 
         let _id = this.$router.params.id, 
             obj = this.form;
-            
+
         _id ? this.updateForm(obj, _id) : this.createForm(obj);
           
         this.$router.push({name: 'edit-don-hang',params:{ id : _id }});
@@ -112,13 +112,20 @@ export default {
   },
 
   mounted() {
+    console.log("app launch")
     if(this.$route.params.id){
       RestResource.getById(this.$route.params.id).then((ok) => {
         this.form = ok.data;
       })
-    }
+    } 
   },
   destroyed() {
+    this.form = {
+      orderNumber: '',
+      shopID: '',
+      phoneNumber:''
+    },
+    
     console.log("destroy")
   },
   created() {

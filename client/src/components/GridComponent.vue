@@ -7,10 +7,10 @@
                 Name
             </th>
             <th>
-                SDT
+                Dia Chi
             </th>
             <th>
-                Dia Chi
+                SDT
             </th>
             <th>
                 Ma Don Hang

@@ -54,7 +54,7 @@
           </el-menu>
         </el-aside>
         <el-main style="height:700px">
-          <router-view></router-view>
+          <router-view :key="$route.fullPath"></router-view>
         </el-main>
       </el-container>
       <el-footer>
